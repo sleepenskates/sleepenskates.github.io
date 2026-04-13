@@ -80,19 +80,16 @@
             const previewArea = btn.nextElementSibling;
             
             if (previewArea.classList.contains('hidden')) {
-                // Remove hidden first, then trigger show animation
                 previewArea.classList.remove('hidden', 'closing-anim');
                 previewArea.classList.add('show-anim');
                 btn.textContent = 'Close Preview';
                 btn.classList.add('active-btn');
             } else {
-                // Trigger closing animation
                 previewArea.classList.remove('show-anim');
                 previewArea.classList.add('closing-anim');
                 btn.textContent = 'Get RX2';
                 btn.classList.remove('active-btn');
                 
-                // Wait for the 0.4s CSS animation to finish before adding 'hidden'
                 setTimeout(() => {
                     if (previewArea.classList.contains('closing-anim')) {
                         previewArea.classList.add('hidden');
