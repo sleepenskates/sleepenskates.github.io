@@ -152,3 +152,41 @@ input[type="text"] {
 }
 
 footer { text-align: center; padding: 60px; color: #333; }
+}
+
+/* Endless Left Drift */
+@keyframes move-left-drift {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 0; }
+}
+
+.twinkling {
+    /* ... your other settings ... */
+    animation: move-left-drift 120s linear infinite;
+}
+
+/* 2-Column Grid Layout */
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Forces two items per row */
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Image scaling to keep cards small */
+.texture-img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    background: #000;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 1px solid var(--main-purple);
+}
+
+/* Responsive fix: 1 column on small phone screens */
+@media (max-width: 700px) {
+    .container { grid-template-columns: 1fr; }
+}
