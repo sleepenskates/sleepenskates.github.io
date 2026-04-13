@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xbox RX2 Hub</title>
+    <title>Xbox Custom Textures Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -15,21 +15,23 @@
     <header>
         <i class="fas fa-vault vault-icon"></i>
         <h1>Xbox Custom Textures</h1>
-        <p>Free-to-use Custom Texture for Xbox</p>
+        <p>Premium RX2 Assets for Xbox</p>
     </header>
 
     <main class="container">
         <div class="card">
             <div class="card-content">
-                <h3>Titanfall 2 Hoodiek</h3>
-                <p>Black Hoodie that has the TF2 logos on front and back.</p>
+                <h3>SpiderMan Board</h3>
+                <p>Skateboard Texture that features Spiderman on the Grip and comic on the back.</p>
                 
-                <button class="get-btn" onclick="togglePreview(this)">Get Texture</button>
+                <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
                 
                 <div class="preview-area hidden">
                     <img src="sky_preview.png" alt="Texture Preview" class="texture-img">
                     <p class="link-label">Direct Link:</p>
-                    <input type="text" value="https://example.com/file.rx2" readonly onclick="this.select()">
+                    <div class="link-container">
+                        <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2426/3119482/3583913.rx2" readonly onclick="this.select()">
+                    </div>
                 </div>
             </div>
         </div>
@@ -39,12 +41,14 @@
                 <h3>Ultra Real Concrete</h3>
                 <p>4K photorealistic textures for urban environments.</p>
                 
-                <button class="get-btn" onclick="togglePreview(this)">Get Texture</button>
+                <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
                 
                 <div class="preview-area hidden">
                     <img src="concrete_preview.png" alt="Texture Preview" class="texture-img">
                     <p class="link-label">Direct Link:</p>
-                    <input type="text" value="https://example.com/concrete.rx2" readonly onclick="this.select()">
+                    <div class="link-container">
+                        <input type="text" value="https://example.com/concrete.rx2" readonly onclick="this.select()">
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,12 +61,17 @@
     <script>
         function togglePreview(btn) {
             const previewArea = btn.nextElementSibling;
+            
             if (previewArea.classList.contains('hidden')) {
                 previewArea.classList.remove('hidden');
+                previewArea.classList.add('show-anim');
                 btn.textContent = 'Close Preview';
+                btn.classList.add('active-btn');
             } else {
                 previewArea.classList.add('hidden');
-                btn.textContent = 'Get Texture';
+                previewArea.classList.remove('show-anim');
+                btn.textContent = 'Get RX2';
+                btn.classList.remove('active-btn');
             }
         }
     </script>
