@@ -15,7 +15,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Drifting Stars */
+/* Backgrounds */
 .stars {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -39,7 +39,8 @@ body {
 
 header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
+    background: linear-gradient(to bottom, rgba(46, 0, 77, 0.8), transparent);
 }
 
 .vault-icon {
@@ -54,13 +55,16 @@ header {
     50% { transform: scale(1.1); }
 }
 
-/* Independent Column Layout */
+/* Independent Vertical Flow Layout */
 .container {
-    column-count: 3; /* Forces 3 columns */
-    column-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Aligns cards to the left properly */
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    align-items: flex-start; /* This ensures expanding one doesn't move the whole row */
 }
 
 .card {
@@ -68,12 +72,9 @@ header {
     border: 1px solid #330066;
     border-radius: 15px;
     padding: 20px;
-    margin-bottom: 20px; /* Space between cards in the same column */
-    display: inline-block; /* Essential for column-count to work correctly */
-    width: 100%; /* Ensures card fills the column width */
-    transition: 0.3s;
+    width: calc(33.333% - 14px); /* Perfect 3-column width taking gap into account */
+    transition: 0.3s ease;
     box-sizing: border-box;
-    break-inside: avoid; /* Prevents card from splitting between columns */
 }
 
 .card:hover {
@@ -95,26 +96,22 @@ header {
 
 .active-btn { background: #221035 !important; color: #666; }
 
+/* Animation matching speeds */
 .hidden { display: none; }
 
 .show-anim {
     display: block;
-    animation: slideDown 0.4s ease-out forwards;
+    animation: slideToggle 0.4s ease-out forwards;
 }
 
 .closing-anim {
     display: block;
-    animation: slideUp 0.4s ease-in forwards;
+    animation: slideToggle 0.4s ease-out reverse forwards;
 }
 
-@keyframes slideDown {
+@keyframes slideToggle {
     0% { opacity: 0; transform: translateY(-10px); max-height: 0; }
     100% { opacity: 1; transform: translateY(0); max-height: 800px; }
-}
-
-@keyframes slideUp {
-    0% { opacity: 1; transform: translateY(0); max-height: 800px; }
-    100% { opacity: 0; transform: translateY(-10px); max-height: 0; }
 }
 
 .texture-img {
@@ -125,6 +122,7 @@ header {
     object-fit: cover;
     border-radius: 4px;
     border: 1px solid var(--main-purple);
+    background: #000;
 }
 
 .link-container {
@@ -146,11 +144,11 @@ input[type="text"] {
 
 /* Responsiveness */
 @media (max-width: 900px) {
-    .container { column-count: 2; }
+    .card { width: calc(50% - 10px); }
 }
 
 @media (max-width: 600px) {
-    .container { column-count: 1; }
+    .card { width: 100%; }
     .texture-img { width: 100%; height: auto; }
 }
 
