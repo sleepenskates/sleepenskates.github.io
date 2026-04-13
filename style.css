@@ -1,252 +1,123 @@
-/* General Styling & Colors (Now Purple Theme) */
+/* Core Theme Colors */
 :root {
-    --primary-purple: #9b59b6; /* Rich purple */
-    --dark-purple: #2c1a36;    /* Dark background purple */
-    --hover-purple: #8e44ad;
-    --text-color: #f1f1f1;
-    --bg-color: #1a1a2e;       /* Deep space blue/purple */
+    --main-purple: #a020f0;
+    --dark-bg: #0a0510;
+    --card-bg: #1a0b2e;
+    --text-bright: #e0d5ff;
 }
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden; /* Prevent horizontal scroll from stars */
-    min-height: 100vh;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-bright);
+    overflow-x: hidden;
 }
 
+/* Star Background Animation */
+.stars {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000 url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
+    z-index: -2;
+}
+
+.twinkling {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: transparent url(https://raw.githubusercontent.com/Micael-Andrade/Space-Invasion/master/assets/images/stars.png) repeat;
+    z-index: -1;
+    animation: move-twink-back 200s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes move-twink-back {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+/* Header & Vault Icon */
 header {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, var(--primary-purple) 0%, var(--bg-color) 100%);
-    width: 100%;
-    position: relative; /* For icon positioning */
+    background: linear-gradient(to bottom, #2e004d, transparent);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+.vault-icon {
+    font-size: 3rem;
+    color: var(--main-purple);
+    text-shadow: 0 0 15px var(--main-purple);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    margin: 10px 0;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: #fff;
+    text-shadow: 2px 2px 10px var(--main-purple);
 }
 
-/* Vault Icon Styling */
-.admin-icon {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 2rem;
-    color: var(--primary-purple);
-    cursor: pointer;
-    transition: color 0.3s, transform 0.2s;
-}
-
-.admin-icon:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-/* Container for the cards */
+/* Content Grid */
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
-    width: 90%;
-    margin: 40px 0;
-    z-index: 10; /* Ensure content is above stars */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* Individual Link Cards */
+/* Texture Cards */
 .card {
-    background-color: #161625;
-    border: 1px solid #333;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
+    background: var(--card-bg);
+    border: 1px solid #4b0082;
+    border-radius: 15px;
+    padding: 20px;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-purple); /* Purple glow on hover */
-}
-
-.card-content {
-    padding: 20px;
+    transform: translateY(-10px);
+    border-color: var(--main-purple);
+    box-shadow: 0 0 20px rgba(160, 32, 240, 0.4);
 }
 
 .card h3 {
+    color: var(--main-purple);
     margin-top: 0;
-    color: var(--primary-purple);
 }
 
 .card p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
     color: #bbb;
 }
 
-/* Download Button Style (Purple) */
+/* Purple Download Button */
 .download-btn {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: var(--primary-purple);
+    display: block;
+    margin-top: 20px;
+    padding: 12px;
+    background: var(--main-purple);
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
     text-align: center;
-    transition: background-color 0.2s;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.2s;
 }
 
 .download-btn:hover {
-    background-color: var(--hover-purple);
+    background: #bd5eff;
+    box-shadow: 0 0 10px var(--main-purple);
 }
 
 footer {
-    padding: 20px;
-    color: #888;
-    font-size: 0.8rem;
-    z-index: 10;
-}
-
-/* =========================================
-   Animated Purple Stars Background
-   (Parallax effect using pseudo-elements)
-   ========================================= */
-.stars-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-}
-
-/* Generate function for box-shadow stars (simplified for demonstration) */
-/* In a real project, this would be a large generated string of shadows */
-@keyframes animStar {
-    from { transform: translateY(0px); }
-    to { transform: translateY(-2000px); }
-}
-
-#stars, #stars2, #stars3 {
-    position: absolute;
-    background: transparent;
-    animation: animStar linear infinite;
-}
-
-/* Define the stars (simulated) */
-#stars {
-    width: 1px;
-    height: 1px;
-    box-shadow: 100px 100px #9b59b6, 300px 500px #8e44ad, 800px 200px #fff, 1200px 600px #9b59b6, 1500px 900px #fff;
-    animation-duration: 100s;
-}
-#stars:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 1px;
-    height: 1px;
-    box-shadow: 100px 100px #9b59b6, 300px 500px #8e44ad, 800px 200px #fff, 1200px 600px #9b59b6, 1500px 900px #fff;
-}
-
-#stars2 {
-    width: 2px;
-    height: 2px;
-    box-shadow: 200px 300px #fff, 600px 100px #9b59b6, 900px 700px #8e44ad, 1400px 200px #fff, 1800px 800px #9b59b6;
-    animation-duration: 50s;
-}
-#stars2:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 2px;
-    height: 2px;
-    box-shadow: 200px 300px #fff, 600px 100px #9b59b6, 900px 700px #8e44ad, 1400px 200px #fff, 1800px 800px #9b59b6;
-}
-
-#stars3 {
-    width: 3px;
-    height: 3px;
-    box-shadow: 50px 700px #8e44ad, 400px 200px #fff, 700px 900px #9b59b6, 1100px 100px #fff, 1600px 400px #8e44ad;
-    animation-duration: 25s;
-}
-#stars3:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 3px;
-    height: 3px;
-    box-shadow: 50px 700px #8e44ad, 400px 200px #fff, 700px 900px #9b59b6, 1100px 100px #fff, 1600px 400px #8e44ad;
-}
-
-/* =========================================
-   Modal (Admin Panel) Styling
-   ========================================= */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8); /* Black background with opacity */
-}
-
-.modal-content {
-    background-color: #161625;
-    margin: 10% auto;
-    padding: 30px;
-    border: 2px solid var(--primary-purple);
-    width: 80%;
-    max-width: 500px;
-    border-radius: 12px;
-    position: relative;
     text-align: center;
-}
-
-.close-modal {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-modal:hover {
-    color: var(--primary-purple);
-}
-
-.modal-content input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    background: #0d0d16;
-    border: 1px solid #444;
-    color: white;
-    border-radius: 5px;
-}
-
-.modal-content button {
-    padding: 10px 20px;
-    background-color: var(--primary-purple);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.hidden {
-    display: none;
+    padding: 40px;
+    color: #555;
 }
