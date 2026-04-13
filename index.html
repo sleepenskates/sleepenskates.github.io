@@ -22,7 +22,7 @@
         <div class="card">
             <div class="card-content">
                 <h3>SpiderMan Board</h3>
-                <p>Skateboard Texture that features Spiderman on the Grip and comic on the back.</p>
+                <p>Skateboard Texture featuring Spiderman on the grip and comic on the back.</p>
                 
                 <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
                 
@@ -38,16 +38,16 @@
 
         <div class="card">
             <div class="card-content">
-                <h3>Ultra Real Concrete</h3>
-                <p>4K photorealistic textures for urban environments.</p>
+                <h3>Gengar Purple Board</h3>
+                <p>Purple Skateboard that features Gengar on the grip and a purple pattern on the bottom.</p>
                 
                 <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
                 
                 <div class="preview-area hidden">
-                    <img src="concrete_preview.png" alt="Texture Preview" class="texture-img">
+                    <img src="gengarpurple.png" alt="Texture Preview" class="texture-img">
                     <p class="link-label">Direct Link:</p>
                     <div class="link-container">
-                        <input type="text" value="https://example.com/concrete.rx2" readonly onclick="this.select()">
+                        <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0897/5677953/3586582.rx2" readonly onclick="this.select()">
                     </div>
                 </div>
             </div>
@@ -63,15 +63,24 @@
             const previewArea = btn.nextElementSibling;
             
             if (previewArea.classList.contains('hidden')) {
-                previewArea.classList.remove('hidden');
+                // OPENING
+                previewArea.classList.remove('hidden', 'closing-anim');
                 previewArea.classList.add('show-anim');
                 btn.textContent = 'Close Preview';
                 btn.classList.add('active-btn');
             } else {
-                previewArea.classList.add('hidden');
+                // CLOSING
                 previewArea.classList.remove('show-anim');
+                previewArea.classList.add('closing-anim');
                 btn.textContent = 'Get RX2';
                 btn.classList.remove('active-btn');
+                
+                // Wait for animation to finish before hiding
+                setTimeout(() => {
+                    if (previewArea.classList.contains('closing-anim')) {
+                        previewArea.classList.add('hidden');
+                    }
+                }, 400); // Matches CSS animation time
             }
         }
     </script>
