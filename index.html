@@ -15,7 +15,7 @@
     <header>
         <i class="fas fa-vault vault-icon"></i>
         <h1>RX2 Hub</h1>
-        <p>Free-to-use RX2s for personal use as in skaters. Please do not sell these!</p>
+        <p>Free-to-use RX2 textures for skaters. Please do not sell these!</p>
     </header>
 
     <main class="container">
@@ -23,12 +23,9 @@
             <div class="card-content">
                 <h3>SpiderMan Board</h3>
                 <p>Skateboard Texture featuring Spiderman on the grip and comic on the back.</p>
-                
                 <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
-                
                 <div class="preview-area hidden">
                     <img src="spidermanboard.png" alt="Texture Preview" class="texture-img">
-                    <p class="link-label">Direct Link:</p>
                     <div class="link-container">
                         <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2426/3119482/3583913.rx2" readonly onclick="this.select()">
                     </div>
@@ -40,12 +37,9 @@
             <div class="card-content">
                 <h3>Gengar Purple Board</h3>
                 <p>Skateboard that features Gengar on the grip and purple pattern on the bottom.</p>
-                
                 <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
-                
                 <div class="preview-area hidden">
                     <img src="gengarpurple.png" alt="Texture Preview" class="texture-img">
-                    <p class="link-label">Direct Link:</p>
                     <div class="link-container">
                         <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0897/5677953/3586582.rx2" readonly onclick="this.select()">
                     </div>
@@ -57,14 +51,25 @@
             <div class="card-content">
                 <h3>Titanfall 2 Hoodie</h3>
                 <p>Black hoodie that features the Titanfall 2 cover on the back and logo on the front.</p>
-                
                 <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
-                
                 <div class="preview-area hidden">
                     <img src="tf2hoodie.png" alt="Texture Preview" class="texture-img">
-                    <p class="link-label">Direct Link:</p>
                     <div class="link-container">
                         <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1481/7554505/3592835.rx2" readonly onclick="this.select()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <h3>Lil Uzi Vert Shirt</h3>
+                <p>Black shirt that features a front graphic of Lil Uzi Vert.</p>
+                <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                <div class="preview-area hidden">
+                    <img src="luvshirt.png" alt="Texture Preview" class="texture-img">
+                    <div class="link-container">
+                        <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3722/6348426/3587950.rx2" readonly onclick="this.select()">
                     </div>
                 </div>
             </div>
@@ -72,12 +77,11 @@
     </main>
 
     <footer>
-        <p>Xbox Modding Community &copy; 2026</p>
+        <p>Join the Discord! - https://discord.gg/aDrD3NZQ9B</p>
     </footer>
 
     <script>
         function togglePreview(btn) {
-            // FIXED: Target only the preview area within this specific card
             const previewArea = btn.parentElement.querySelector('.preview-area');
             
             if (previewArea.classList.contains('hidden')) {
@@ -99,6 +103,5 @@
             }
         }
     </script>
-
 </body>
 </html>
