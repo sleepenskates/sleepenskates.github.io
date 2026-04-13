@@ -15,7 +15,7 @@
     <header>
         <i class="fas fa-vault vault-icon"></i>
         <h1>Xbox Custom Textures</h1>
-        <p>Free-to-use textures for use for skaters. Please don't sell these!</p>
+        <p>Premium RX2 Assets for Xbox</p>
     </header>
 
     <main class="container">
@@ -38,16 +38,33 @@
 
         <div class="card">
             <div class="card-content">
-                <h3>Gengar Purple Board</h3>
-                <p>Purple Skateboard that features Gengar on the grip and a purple pattern on the bottom.</p>
+                <h3>Titanfall 2 Hoodie</h3>
+                <p>Black hoodie that features the Titanfall 2 cover on the back and logo on the front.</p>
                 
                 <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
                 
                 <div class="preview-area hidden">
-                    <img src="gengarpurple.png" alt="Texture Preview" class="texture-img">
+                    <img src="tf2hoodie.png" alt="Texture Preview" class="texture-img">
                     <p class="link-label">Direct Link:</p>
                     <div class="link-container">
-                        <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0897/5677953/3586582.rx2" readonly onclick="this.select()">
+                        <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1481/7554505/3592835.rx2" readonly onclick="this.select()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                <h3>Ultra Real Concrete</h3>
+                <p>4K photorealistic textures for urban environments.</p>
+                
+                <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                
+                <div class="preview-area hidden">
+                    <img src="concrete_preview.png" alt="Texture Preview" class="texture-img">
+                    <p class="link-label">Direct Link:</p>
+                    <div class="link-container">
+                        <input type="text" value="https://example.com/concrete.rx2" readonly onclick="this.select()">
                     </div>
                 </div>
             </div>
@@ -55,7 +72,7 @@
     </main>
 
     <footer>
-        <p>Join the Discord! - https://discord.gg/aDrD3NZQ9B</p>
+        <p>Xbox Modding Community &copy; 2026</p>
     </footer>
 
     <script>
@@ -63,24 +80,24 @@
             const previewArea = btn.nextElementSibling;
             
             if (previewArea.classList.contains('hidden')) {
-                // OPENING
+                // Remove hidden first, then trigger show animation
                 previewArea.classList.remove('hidden', 'closing-anim');
                 previewArea.classList.add('show-anim');
                 btn.textContent = 'Close Preview';
                 btn.classList.add('active-btn');
             } else {
-                // CLOSING
+                // Trigger closing animation
                 previewArea.classList.remove('show-anim');
                 previewArea.classList.add('closing-anim');
                 btn.textContent = 'Get RX2';
                 btn.classList.remove('active-btn');
                 
-                // Wait for animation to finish before hiding
+                // Wait for the 0.4s CSS animation to finish before adding 'hidden'
                 setTimeout(() => {
                     if (previewArea.classList.contains('closing-anim')) {
                         previewArea.classList.add('hidden');
                     }
-                }, 400); // Matches CSS animation time
+                }, 400);
             }
         }
     </script>
