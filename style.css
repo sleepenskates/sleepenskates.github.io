@@ -52,7 +52,7 @@ header {
     50% { transform: scale(1.1); }
 }
 
-/* Column Fix */
+/* Lane-Based Layout */
 .container {
     display: flex;
     justify-content: center;
@@ -67,7 +67,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    flex: 1; /* Makes each column equal width */
+    flex: 1;
 }
 
 .card {
@@ -76,6 +76,7 @@ header {
     border-radius: 15px;
     padding: 20px;
     transition: border-color 0.3s;
+    overflow: hidden;
 }
 
 .card:hover {
@@ -97,26 +98,26 @@ header {
 
 .active-btn { background: #221035 !important; color: #666; }
 
-/* Animations */
+/* Animation Overhaul */
 .hidden { display: none; }
 
 .show-anim {
     display: block;
-    animation: slideDown 0.4s ease-out forwards;
+    animation: slideDown 0.3s ease-out forwards;
 }
 
 .closing-anim {
     display: block;
-    animation: slideUp 0.4s ease-out forwards;
+    animation: slideUp 0.3s ease-in forwards; /* Fast ease-in for closing */
 }
 
 @keyframes slideDown {
     0% { opacity: 0; transform: translateY(-10px); max-height: 0; }
-    100% { opacity: 1; transform: translateY(0); max-height: 800px; }
+    100% { opacity: 1; transform: translateY(0); max-height: 600px; }
 }
 
 @keyframes slideUp {
-    0% { opacity: 1; transform: translateY(0); max-height: 800px; }
+    0% { opacity: 1; transform: translateY(0); max-height: 600px; }
     100% { opacity: 0; transform: translateY(-10px); max-height: 0; }
 }
 
