@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xbox Custom Textures Hub</title>
+    <title>Xbox RX2 Hub</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -15,15 +15,22 @@
     <header>
         <i class="fas fa-vault vault-icon"></i>
         <h1>Xbox Custom Textures</h1>
-        <p>Direct Links for Community Assets</p>
+        <p>Free-to-use Custom Texture for Xbox</p>
     </header>
 
     <main class="container">
         <div class="card">
             <div class="card-content">
-                <h3>Vibrant Skies Pack</h3>
-                <p>Enhanced environment textures for open-world games.</p>
-                <a href="YOUR_LINK_HERE" class="download-btn">Download .rx2</a>
+                <h3>Titanfall 2 Hoodiek</h3>
+                <p>Black Hoodie that has the TF2 logos on front and back.</p>
+                
+                <button class="get-btn" onclick="togglePreview(this)">Get Texture</button>
+                
+                <div class="preview-area hidden">
+                    <img src="sky_preview.png" alt="Texture Preview" class="texture-img">
+                    <p class="link-label">Direct Link:</p>
+                    <input type="text" value="https://example.com/file.rx2" readonly onclick="this.select()">
+                </div>
             </div>
         </div>
 
@@ -31,15 +38,14 @@
             <div class="card-content">
                 <h3>Ultra Real Concrete</h3>
                 <p>4K photorealistic textures for urban environments.</p>
-                <a href="YOUR_LINK_HERE" class="download-btn">Download .rx2</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-content">
-                <h3>Custom Grip Tape</h3>
-                <p>Purple themed grip tape assets for skate mods.</p>
-                <a href="YOUR_LINK_HERE" class="download-btn">Download .rx2</a>
+                
+                <button class="get-btn" onclick="togglePreview(this)">Get Texture</button>
+                
+                <div class="preview-area hidden">
+                    <img src="concrete_preview.png" alt="Texture Preview" class="texture-img">
+                    <p class="link-label">Direct Link:</p>
+                    <input type="text" value="https://example.com/concrete.rx2" readonly onclick="this.select()">
+                </div>
             </div>
         </div>
     </main>
@@ -47,6 +53,19 @@
     <footer>
         <p>Xbox Modding Community &copy; 2026</p>
     </footer>
+
+    <script>
+        function togglePreview(btn) {
+            const previewArea = btn.nextElementSibling;
+            if (previewArea.classList.contains('hidden')) {
+                previewArea.classList.remove('hidden');
+                btn.textContent = 'Close Preview';
+            } else {
+                previewArea.classList.add('hidden');
+                btn.textContent = 'Get Texture';
+            }
+        }
+    </script>
 
 </body>
 </html>
