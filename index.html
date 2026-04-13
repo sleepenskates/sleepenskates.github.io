@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xbox Custom Textures Hub</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+    <div class="stars-container">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
     <header>
+        <i class="fas fa-vault admin-icon" id="adminVaultIcon"></i>
         <h1>Xbox Custom Textures</h1>
         <p>High-quality community textures and assets</p>
     </header>
 
-    <main class="container">
+    <main class="container" id="textureContainer">
         <div class="card">
             <div class="card-content">
                 <h3>Vibrant Skies Pack</h3>
@@ -29,12 +37,30 @@
                 <a href="YOUR_LINK_HERE" class="download-btn">Download .rx2</a>
             </div>
         </div>
-
-        </main>
+    </main>
 
     <footer>
         <p>Join the community on Discord for more updates.</p>
     </footer>
 
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Access Admin Panel</h2>
+            <input type="password" id="adminCode" placeholder="Enter Access Code">
+            <button id="submitCodeBtn">Access</button>
+            <div id="adminPanelArea" class="hidden">
+                <hr>
+                <h3>Add New Texture</h3>
+                <p>To permanently add textures, you must manually edit the HTML file in GitHub. This panel just previews them.</p>
+                <input type="text" id="newTitle" placeholder="Texture Title">
+                <input type="text" id="newDesc" placeholder="Description">
+                <input type="text" id="newLink" placeholder="Download Link">
+                <button id="addTextureBtn">Add Texture Card</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
