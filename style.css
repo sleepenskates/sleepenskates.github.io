@@ -14,23 +14,22 @@ body {
     overflow-x: hidden;
 }
 
-/* Drifting Star Layers */
+/* Background Drift */
 .stars {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: #000 url(https://www.transparenttextures.com/patterns/stardust.png) repeat;
     z-index: -2;
-    animation: move-left-drift 200s linear infinite; /* Very slow base layer */
+    animation: move-left-drift 200s linear infinite;
 }
 
 .twinkling {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: transparent url(https://raw.githubusercontent.com/Micael-Andrade/Space-Invasion/master/assets/images/stars.png) repeat;
     z-index: -1;
-    animation: move-left-drift 100s linear infinite; /* Faster twinkling layer */
+    animation: move-left-drift 100s linear infinite;
     opacity: 0.3;
 }
 
-/* Endless Leftward Drift */
 @keyframes move-left-drift {
     from { background-position: 0 0; }
     to { background-position: -2000px 0; }
@@ -54,7 +53,7 @@ header {
     50% { transform: scale(1.1); }
 }
 
-/* Column Lane Layout */
+/* Lane Layout */
 .container {
     display: flex;
     justify-content: center;
@@ -100,7 +99,6 @@ header {
 
 .active-btn { background: #221035 !important; color: #666; }
 
-/* Animation Overhaul */
 .hidden { display: none; }
 
 .show-anim {
