@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RX2 Hub</title>
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=15">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body onload="updateTextureCount()">
 
     <div class="stars"></div>
     <div class="twinkling"></div>
@@ -16,6 +16,7 @@
         <i class="fas fa-vault vault-icon"></i>
         <h1>RX2 Hub</h1>
         <p>Free-to-use RX2 textures for skaters. Please do not sell these!</p>
+        <p class="texture-counter">Texture Count: <span id="count-number">0</span></p>
     </header>
 
     <main class="container">
@@ -563,6 +564,12 @@
     </footer>
 
     <script>
+        // Update texture count on load
+        function updateTextureCount() {
+            const cards = document.querySelectorAll('.card');
+            document.getElementById('count-number').textContent = cards.length;
+        }
+
         function togglePreview(btn) {
             const previewArea = btn.parentElement.querySelector('.preview-area');
             if (previewArea.classList.contains('hidden')) {
