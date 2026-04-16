@@ -1,3 +1,11 @@
+.texture-counter {
+    color: var(--neon-purple);
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    text-shadow: 0 0 10px rgba(191, 0, 255, 0.4);
+}
+
 :root {
     --main-purple: #a020f0;
     --neon-purple: #bf00ff;
