@@ -1,3 +1,70 @@
+/* Music Player Bottom Left */
+#music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controls-container {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid var(--neon-purple);
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 0 15px rgba(191, 0, 255, 0.3);
+}
+
+#play-pause-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+#play-pause-btn:hover {
+    color: var(--neon-purple);
+    text-shadow: 0 0 10px var(--neon-purple);
+}
+
+#volume-slider {
+    width: 80px;
+    cursor: pointer;
+    accent-color: var(--neon-purple);
+}
+
+.vol-icon {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Now Playing Notification */
+#now-playing-toast {
+    background: rgba(191, 0, 255, 0.2);
+    border-left: 4px solid var(--neon-purple);
+    color: white;
+    padding: 8px 15px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+#now-playing-toast.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 .texture-counter {
     color: var(--neon-purple);
     font-weight: bold;
