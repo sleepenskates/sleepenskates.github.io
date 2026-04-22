@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="style.css?v=21">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Splash Screen Styles */
+        /* Splash Screen Overlay */
         #entry-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('your-background-image.png') no-repeat center center;
-            background-size: cover;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,46 +23,30 @@
             transition: opacity 1s ease, visibility 1s;
         }
 
-        #entry-overlay::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.7); /* Darken */
-            backdrop-filter: blur(15px); /* Blurry effect */
-            z-index: -1;
-        }
-
         #entry-overlay p {
             color: white;
-            font-family: sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { opacity: 0.4; }
+            0%, 100% { opacity: 0.4; }
             50% { opacity: 1; }
-            100% { opacity: 0.4; }
         }
 
-        /* Hide main content initially */
         #main-site-content {
             opacity: 0;
             transition: opacity 1.5s ease;
         }
 
-        .site-visible {
-            opacity: 1 !important;
-        }
-
-        .fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
+        .fade-out { opacity: 0; visibility: hidden; }
+        .site-visible { opacity: 1 !important; }
     </style>
 </head>
-<body onload="updateTextureCount()">
+<body>
 
     <div id="entry-overlay" onclick="enterSite()">
         <p>click to enter...</p>
@@ -77,17 +60,548 @@
             <i class="fas fa-vault vault-icon"></i>
             <h1>RX2 Hub</h1>
             <p>Free-to-use RX2 textures for skaters. Please do not sell these!</p>
-            
-            <div class="search-container" style="margin-top: 15px;">
-                <input type="text" id="search-bar" placeholder="Search textures..." onkeyup="filterTextures()" 
-                       style="padding: 10px; border-radius: 5px; border: none; width: 250px; background: rgba(255,255,255,0.1); color: white;">
-            </div>
-
             <p class="texture-counter">Texture Count: <span id="count-number">0</span></p>
         </header>
 
         <main class="container">
-            </main>
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Spiderman Board</h3>
+                        <p>Skateboard texture featuring Spiderman on the grip and comic on the back.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="spidermanboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2426/3119482/3583913.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Do What You Must T-Shirt</h3>
+                        <p>T-shirt with red patterns and white text.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="dowhatyoumust.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0201/1052873/3590790.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Pink Sp*der Hoodie</h3>
+                        <p>Pink hoodie with Sp*der! graphic on the front.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="pinkspider.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0860/5256028/3589555.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>$uicideboy$ T-Shirt</h3>
+                        <p>Black t-shirt with white $uicideboy$ graphics on front and back.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="suicideboys.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3234/3689634/3589260.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lil Uzi Vert Shirt</h3>
+                        <p>Black t-shirt with Lil Uzi graphic on the front.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="luvshirt.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3722/6348426/3587950.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Leliow Rogue Status T-Shirt</h3>
+                        <p>Black t-shirt that has pink graphics on the front and back.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="leliowtee.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1653/1906293/3589042.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Nissan T-Shirt</h3>
+                        <p>Black shirt with purple Nissan graphics on front and back.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="nissantee.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2408/3008872/3587750.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Brainwashed By Hellstar</h3>
+                        <p>White shirt with Hellstar graphics on front and back.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="brainwashedshirt.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0091/4341851/3592275.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Hellstar Vintage Hoodie</h3>
+                        <p>Gray hoodie with Hellstar logos on front and back.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="hellstarvnt.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0676/7733924/3591806.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Thrasher Flames Board</h3>
+                        <p>Orange theme board with Thrasher logo on the grip.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="thrasherboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3000/2173880/3589318.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Dr. Pepper Board</h3>
+                        <p>Red board with Dr. Pepper graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="drpepperboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3869/2514717/3588985.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Pepsi Board</h3>
+                        <p>Blue board with Pepsi graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="pepsiboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2086/4220966/3588396.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Gengar Purple Board</h3>
+                        <p>Skateboard that features Gengar on the grip and purple patterns.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="gengarpurple.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0897/5677953/3586582.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Geedup Trapstar & Spongebob</h3>
+                        <p>Black pants with white graphics sagging Spongebob boxers.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="geedup.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0546/8372770/3588150.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Illustrative Jeans</h3>
+                        <p>Black and gray pants with illustrative graphics and Supreme.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="illustrative.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2930/5897074/3589264.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Kuromi Pants</h3>
+                        <p>Gray/black pants with Kuromi patterns scattered around.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="kuromi.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0750/1536750/3589551.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Bleached Graffiti Pants</h3>
+                        <p>White pants with black graffiti writings all around.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="graffitipants.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1123/2081891/3590669.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Red Flannel Pajamas</h3>
+                        <p>Red and black PJs that everyone has in their closet.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="redpjs.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3922/5574482/3588264.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Purple Flannel Pajamas</h3>
+                        <p>Purple version of the pajamas everyone has in their closet.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="purppjs.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1409/5555585/3588266.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Smokedope2016 Jersey</h3>
+                        <p>Orange NY jersey of famous rapper SmokeDope2016.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="sd2016jrs.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1783/4597495/3589186.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Orange Crush Board</h3>
+                        <p>Orange board with Crush graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="crushboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1983/4093887/3588983.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>A&W Root Beer Board</h3>
+                        <p>Brown board with Root Beer graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="awrootbeer.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3940/1064804/3588953.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Childhood Rug Board</h3>
+                        <p>Board with lego pattern on bottom and race track on grip.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="childhoodrug.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2218/2214058/3587962.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Purple Skelerose Board</h3>
+                        <p>Board with purple skeleton and rose graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="skelerose.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3499/7331243/3586792.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Titanfall 2 Hoodie</h3>
+                        <p>Black hoodie with Titanfall 2 cover and logo.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="tf2hoodie.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1481/7554505/3592835.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lobster Dunks</h3>
+                        <p>Purple Nike shoes with white details.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="lobsterdunk.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1330/8164658/3587714.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Green Low Dunks</h3>
+                        <p>Green Nike dunks with white/black details.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="greendunk.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2334/2803998/3587902.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Black Shark Bapestas</h3>
+                        <p>Black shoes with red Bapesta logos.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="redbapesta.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1167/7988367/3588376.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Jordan Low Dunks</h3>
+                        <p>Black and white Nike Air Jordans.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="jordanwhite.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3496/1093032/3588204.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Mountain Dew Board</h3>
+                        <p>Green board with Mountain Dew graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="mntndew.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1206/1025206/3588955.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Chrome Hearts Board</h3>
+                        <p>Board with white Chrome Heart graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="chromeheartv1.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0057/2424889/3588891.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Chrome Hearts Board V2</h3>
+                        <p>Version 2 with white Chrome Heart graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="chromeheartv2.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0202/8732874/3588893.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Yinyang Board</h3>
+                        <p>Black and white board with Yin Yang graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="yinyang.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/3141/1973317/3587899.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Hotwheels Board</h3>
+                        <p>Blue board with Hotwheels cars and graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="hotwheels.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0623/1540719/3587442.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Juice WRLD Board</h3>
+                        <p>Juice WRLD's face on grip and album cover on bottom.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="juiceboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2375/5364039/3588989.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lil Uzi Vert Board</h3>
+                        <p>Lil Uzi on the grip and Eternal Atake graphics.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="luvboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/2816/6707968/3588045.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>2016Lyfe Board</h3>
+                        <p>SmokeDope2016 themed board with THE PEAK cover.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="2016lyfeboard.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1648/7272048/3592689.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Lil Uzi Vert Shorts</h3>
+                        <p>Cargo shorts with Pink Tape graphic surfacing.</p>
+                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
+                        <div class="preview-area hidden">
+                            <img src="luvshorts.png" alt="Preview" class="texture-img">
+                            <div class="link-container">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1394/5154162/3588113.rx2" readonly onclick="this.select()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <div id="music-player">
             <div id="now-playing-toast">Now Playing: Loading...</div>
@@ -105,38 +619,19 @@
     </div>
 
     <script>
-        // --- ENTRY LOGIC ---
         function enterSite() {
             const overlay = document.getElementById('entry-overlay');
             const content = document.getElementById('main-site-content');
-            
-            // Fade out overlay
             overlay.classList.add('fade-out');
-            
-            // Fade in site
             content.classList.add('site-visible');
-            
-            // Start Music
+            updateTextureCount();
             initMusic();
-            setTimeout(() => {
-                togglePlay(); 
-            }, 100);
+            setTimeout(() => { togglePlay(); }, 100);
         }
 
-        // --- TEXTURE LOGIC ---
         function updateTextureCount() {
             const cards = document.querySelectorAll('.card');
             document.getElementById('count-number').textContent = cards.length;
-        }
-
-        function filterTextures() {
-            const query = document.getElementById('search-bar').value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const desc = card.querySelector('p').textContent.toLowerCase();
-                card.style.display = (title.includes(query) || desc.includes(query)) ? "block" : "none";
-            });
         }
 
         function togglePreview(btn) {
@@ -160,7 +655,6 @@
             }
         }
 
-        // --- MUSIC PLAYER LOGIC ---
         const playlist = [
             { name: "16", artist: "Baby Keem", src: "music/16.mp3" },
             { name: "Been Away", artist: "Brent Faiyaz", src: "music/Been Away.mp3" },
@@ -177,7 +671,6 @@
             currentTrackIndex = Math.floor(Math.random() * playlist.length);
             loadTrack(currentTrackIndex);
             audio.volume = 0.15;
-            
             audio.onended = () => {
                 currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
                 loadTrack(currentTrackIndex);
@@ -193,7 +686,7 @@
 
         function togglePlay() {
             if (audio.paused) {
-                audio.play().catch(e => console.log("Playback prevented until interaction."));
+                audio.play().catch(e => console.log("Playback blocked until click"));
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
                 audio.pause();
@@ -201,9 +694,7 @@
             }
         }
 
-        function changeVolume(val) {
-            audio.volume = val;
-        }
+        function changeVolume(val) { audio.volume = val; }
     </script>
 </body>
 </html>
