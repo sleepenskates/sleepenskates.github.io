@@ -233,3 +233,72 @@ input[type="text"] {
 }
 
 footer { text-align: center; padding: 40px; color: #555; }
+
+/* The Landing Overlay */
+.landing-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('your-texture.png'); /* Your untouched texture */
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transition: opacity 1s ease-out; /* The fade-out animation */
+}
+
+/* The Animated Text */
+.click-text {
+    font-size: 2rem;
+    color: white;
+    text-transform: lowercase;
+    cursor: pointer;
+    
+    /* Animation Call */
+    animation: floatAndGlow 3s ease-in-out infinite;
+}
+
+@keyframes floatAndGlow {
+    0%, 100% {
+        transform: translateY(0px);
+        text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+    50% {
+        transform: translateY(-10px);
+        text-shadow: 0 0 30px rgba(255,255,255,0.8);
+    }
+}
+
+/* The actual site content hidden initially */
+.main-site {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1.5s ease-out;
+}
+
+/* Class added via JavaScript on click */
+.main-site.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animate every element inside the site slightly differently */
+.main-site > * {
+    animation: fadeInSlide 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Stagger the animations so they pop in one by one */
+.main-site > *:nth-child(1) { animation-delay: 0.2s; }
+.main-site > *:nth-child(2) { animation-delay: 0.4s; }
+.main-site > *:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
