@@ -44,6 +44,45 @@
 
         .fade-out { opacity: 0; visibility: hidden; }
         .site-visible { opacity: 1 !important; }
+
+        /* Search Bar Styling */
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        #textureSearch {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #textureSearch:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hidden-card {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -61,6 +100,11 @@
             <h1>RX2 Hub</h1>
             <p>Free-to-use RX2 textures for skaters. Please do not sell these!</p>
             <p class="texture-counter">Texture Count: <span id="count-number">0</span></p>
+            
+            <div class="search-container">
+                <input type="text" id="textureSearch" placeholder="Search for textures (e.g. 'Board', 'Hoodie', 'Nike')..." onkeyup="filterTextures()">
+                <i class="fas fa-search search-icon"></i>
+            </div>
         </header>
 
         <main class="container">
@@ -579,122 +623,60 @@
                         <p>SmokeDope2016 themed board with THE PEAK cover.</p>
                         <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
                         <div class="preview-area hidden">
-                            <img src="2016lyfeboard.png" alt="Preview" class="texture-img">
+                            <img src="peakboard.png" alt="Preview" class="texture-img">
                             <div class="link-container">
-                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1648/7272048/3592689.rx2" readonly onclick="this.select()">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-content">
-                        <h3>Lil Uzi Vert Shorts</h3>
-                        <p>Cargo shorts with Pink Tape graphic surfacing.</p>
-                        <button class="get-btn" onclick="togglePreview(this)">Get RX2</button>
-                        <div class="preview-area hidden">
-                            <img src="luvshorts.png" alt="Preview" class="texture-img">
-                            <div class="link-container">
-                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/1394/5154162/3588113.rx2" readonly onclick="this.select()">
+                                <input type="text" value="http://downloads.skate.online.ea.com/skate3/content/XBL2/RTEX_XBOX2/0762/2042762/3591963.rx2" readonly onclick="this.select()">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
-        <div id="music-player">
-            <div id="now-playing-toast">Now Playing: Loading...</div>
-            <div class="controls-container">
-                <button id="play-pause-btn" onclick="togglePlay()"><i class="fas fa-play"></i></button>
-                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.15" oninput="changeVolume(this.value)">
-                <i class="fas fa-volume-up vol-icon"></i>
-            </div>
-            <audio id="bg-audio"></audio>
-        </div>
-
-        <footer>
-            <p>Join the Discord! - https://discord.gg/aDrD3NZQ9B</p>
-        </footer>
     </div>
 
     <script>
         function enterSite() {
             const overlay = document.getElementById('entry-overlay');
             const content = document.getElementById('main-site-content');
+            
             overlay.classList.add('fade-out');
             content.classList.add('site-visible');
-            updateTextureCount();
-            initMusic();
-            setTimeout(() => { togglePlay(); }, 100);
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1000);
+
+            updateCount();
         }
 
-        function updateTextureCount() {
+        function togglePreview(btn) {
+            const previewArea = btn.nextElementSibling;
+            previewArea.classList.toggle('hidden');
+            btn.textContent = previewArea.classList.contains('hidden') ? 'Get RX2' : 'Close Preview';
+        }
+
+        function updateCount() {
             const cards = document.querySelectorAll('.card');
             document.getElementById('count-number').textContent = cards.length;
         }
 
-        function togglePreview(btn) {
-            const previewArea = btn.parentElement.querySelector('.preview-area');
-            if (previewArea.classList.contains('hidden')) {
-                previewArea.classList.remove('hidden', 'closing-anim');
-                previewArea.classList.add('show-anim');
-                btn.textContent = 'Close Preview';
-                btn.classList.add('active-btn');
-            } else {
-                previewArea.classList.remove('show-anim');
-                previewArea.classList.add('closing-anim');
-                btn.textContent = 'Get RX2';
-                btn.classList.remove('active-btn');
-                setTimeout(() => {
-                    if (previewArea.classList.contains('closing-anim')) {
-                        previewArea.classList.add('hidden');
-                        previewArea.classList.remove('closing-anim');
-                    }
-                }, 300);
-            }
+        // Search Filter Logic
+        function filterTextures() {
+            const input = document.getElementById('textureSearch');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+                
+                if (title.includes(filter) || desc.includes(filter)) {
+                    card.classList.remove('hidden-card');
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
         }
-
-        const playlist = [
-            { name: "16", artist: "Baby Keem", src: "music/16.mp3" },
-            { name: "Been Away", artist: "Brent Faiyaz", src: "music/Been Away.mp3" },
-            { name: "Mine", artist: "Cl4pers", src: "music/Mine.mp3" },
-            { name: "Honest", artist: "Baby Keem", src: "music/Honest.mp3" }
-        ];
-
-        let currentTrackIndex = 0;
-        const audio = document.getElementById('bg-audio');
-        const playBtn = document.getElementById('play-pause-btn');
-        const toast = document.getElementById('now-playing-toast');
-
-        function initMusic() {
-            currentTrackIndex = Math.floor(Math.random() * playlist.length);
-            loadTrack(currentTrackIndex);
-            audio.volume = 0.15;
-            audio.onended = () => {
-                currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-                loadTrack(currentTrackIndex);
-                audio.play();
-            };
-        }
-
-        function loadTrack(index) {
-            const track = playlist[index];
-            audio.src = track.src;
-            toast.textContent = `Now Playing: ${track.name} - ${track.artist}`;
-        }
-
-        function togglePlay() {
-            if (audio.paused) {
-                audio.play().catch(e => console.log("Playback blocked until click"));
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                audio.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        }
-
-        function changeVolume(val) { audio.volume = val; }
     </script>
 </body>
 </html>
